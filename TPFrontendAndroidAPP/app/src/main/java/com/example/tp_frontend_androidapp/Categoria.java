@@ -1,9 +1,13 @@
 package com.example.tp_frontend_androidapp;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
     @SerializedName("idCategoria")
     @Expose
     private Integer idCategoria;
@@ -11,13 +15,6 @@ public class Categoria {
     @Expose
     private String descripcion;
 
-    @SerializedName("flagVisible")
-    @Expose
-    private String flagVisible;
-
-    @SerializedName("posicion")
-    @Expose
-    private Integer posicion;
 
     public Categoria() {
     }
@@ -38,19 +35,10 @@ public class Categoria {
         this.descripcion = descripcion;
     }
 
-    public String getFlagVisible() {
-        return flagVisible;
-    }
 
-    public void setFlagVisible(String flagVisible) {
-        this.flagVisible = flagVisible;
-    }
-
-    public Integer getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(Integer posicion) {
-        this.posicion = posicion;
+    @NonNull
+    @Override
+    public String toString() {
+        return descripcion;
     }
 }

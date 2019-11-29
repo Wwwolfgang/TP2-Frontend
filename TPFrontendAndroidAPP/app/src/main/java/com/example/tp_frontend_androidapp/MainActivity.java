@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         if (campoNombreUsuario.getText().toString().equals("admin")
                 && campoPassword.getText().toString().equals("123")) {
 
-            Intent intentNewActivity = new Intent(MainActivity.this, ReservaActivity.class);
+            Intent intentNewActivity = new Intent(MainActivity.this, MenuPrincipalActivity.class);
             Bundle b = new Bundle();
             b.putString("usuario",campoNombreUsuario.getText().toString());
             intentNewActivity.putExtras(b);

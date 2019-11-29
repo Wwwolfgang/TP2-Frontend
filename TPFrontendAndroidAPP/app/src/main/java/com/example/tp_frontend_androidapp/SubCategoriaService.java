@@ -6,8 +6,8 @@ import retrofit2.http.Query;
 
 public interface SubCategoriaService {
 
-    @GET("categoria")
-    Call<Lista<Categoria>> obtenerSubCategorias(@Query("orderBy") String orderBy,
+    @GET("tipoProducto")
+    Call<Lista<SubCategoria>> obtenerSubCategorias(@Query("orderBy") String orderBy,
                                                 @Query("orderDir") String orderDir,
                                                 @Query("ejemplo") String ejemplo
     );

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearFichaActivity"
+    android:orientation="vertical"
+    android:id="@+id/crear_ficha_lt"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/doctor_ficha_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            />
+    <Button
+        android:id="@+id/buscar_doctor_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Doctor"
+        android:onClick="obtenerDoctor"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+    <TextView
+        android:id="@+id/paciente_ficha_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="obtenerPaciente"
+        android:layout_weight="3"
+        />
+    <Button
+        android:id="@+id/buscar_paciente_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Paciente" />
+    </LinearLayout>
+    <Spinner
+        android:id="@+id/lista_categoria_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <Spinner
+        android:id="@+id/lista_subcategoria_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/motivo_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Motivo Consulta"
+    />
+
+    <EditText
+        android:id="@+id/diagnostico_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Diagnostico"
+     />
+
+    <EditText
+        android:id="@+id/observacion_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Observacion"
+
+     />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:onClick="guardar"
+    />
+
+    <Button
+        android:id="@+id/eliminar_ficha_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:onClick="eliminarFicha"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar un Archivo"
+        android:onClick="seleccionarArchivo"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvArchivo"
+        />
+
+</LinearLayout>

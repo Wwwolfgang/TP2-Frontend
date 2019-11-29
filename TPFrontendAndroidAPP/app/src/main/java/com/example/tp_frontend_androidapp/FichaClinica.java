@@ -1,12 +1,17 @@
 package com.example.tp_frontend_androidapp;
 
+import android.net.Uri;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FichaClinica {
+import java.io.Serializable;
+
+public class FichaClinica implements Serializable {
     @SerializedName("idFichaClinica")
     @Expose
     private Integer idFichaClinica;
+
     @SerializedName("fechaHora")
     @Expose
     private String fechaHora;
@@ -52,7 +57,93 @@ public class FichaClinica {
     public FichaClinica() {
     }
 
+    public Integer getIdFichaClinica() {
+        return idFichaClinica;
+    }
 
+    public void setIdFichaClinica(Integer idFichaClinica) {
+        this.idFichaClinica = idFichaClinica;
+    }
+
+    public String getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(String fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getMotivoConsulta() {
+        return motivoConsulta;
+    }
+
+    public void setMotivoConsulta(String motivoConsulta) {
+        this.motivoConsulta = motivoConsulta;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    public Paciente getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(Paciente idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public Paciente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Paciente idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public SubCategoria getIdTipoProducto() {
+        return idTipoProducto;
+    }
+
+    public void setIdTipoProducto(SubCategoria idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
+    }
+
+    public String getFechaHoraCadena() {
+        return fechaHoraCadena;
+    }
+
+    public void setFechaHoraCadena(String fechaHoraCadena) {
+        this.fechaHoraCadena = fechaHoraCadena;
+    }
+
+    public String getFechaDesdeCadena() {
+        return fechaDesdeCadena;
+    }
+
+    public void setFechaDesdeCadena(String fechaDesdeCadena) {
+        this.fechaDesdeCadena = fechaDesdeCadena;
+    }
+
+    public String getFechaHastaCadena() {
+        return fechaHastaCadena;
+    }
+
+    public void setFechaHastaCadena(String fechaHastaCadena) {
+        this.fechaHastaCadena = fechaHastaCadena;
+    }
 }
 
 class FichaArchivo{
@@ -66,4 +157,40 @@ class FichaArchivo{
     @SerializedName("urlImagen")
     @Expose
     private String urlImagen;
+
+    private boolean debe_agregarse;
+
+    public boolean isDebe_agregarse() {
+        return debe_agregarse;
+    }
+
+    public void setDebe_agregarse(boolean debe_agregarse) {
+        this.debe_agregarse = debe_agregarse;
+    }
+
+    public Integer getIdFichaArchivo() {
+        return idFichaArchivo;
+    }
+
+    public void setIdFichaArchivo(Integer idFichaArchivo) {
+        this.idFichaArchivo = idFichaArchivo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
+    public Uri uri;
 }

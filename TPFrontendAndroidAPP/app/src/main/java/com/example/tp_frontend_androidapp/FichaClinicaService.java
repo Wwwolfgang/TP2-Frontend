@@ -20,9 +20,6 @@ import retrofit2.http.Url;
 public interface FichaClinicaService {
     @GET("fichaClinica")
     Call<Lista<FichaClinica>> obtenerFichas(@Query("orderBy") String orderBy,
-                                                @Query("orderDir") String orderDir,
-                                                @Query("inicio") int inicio,
-                                                @Query("cantidad") int cantidad,
                                                 @Query("ejemplo") String ejemplo
     );
 
@@ -43,7 +40,7 @@ public interface FichaClinicaService {
 
     @Multipart
     @POST("fichaArchivo/archivo")
-    Call<FichaClinica> cargarArchivo(@Part("file") RequestBody file, @Part("nombre") RequestBody nombre, @Part("idFichaClinica") RequestBody id );
+    Call<String> cargarArchivo(@Part("file") RequestBody file, @Part("nombre") RequestBody nombre, @Part("idFichaClinica") RequestBody id );
 
     @GET("fichaArchivo")
     Call<Lista<FichaArchivo>> obtenerArchivos(@Query("idFichaClinica") int id);
