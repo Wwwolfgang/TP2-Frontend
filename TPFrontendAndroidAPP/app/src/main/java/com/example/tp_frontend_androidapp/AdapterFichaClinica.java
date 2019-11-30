@@ -37,8 +37,12 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
 
     @Override
     public void onBindViewHolder(@NonNull AdapterFichaClinicaHolder holder, int position) {
-        holder.tvFecha.setText(lista[position].getFechaHora());
-        holder.tvIdFicha.setText(lista[position].getIdFichaClinica().toString());
+        String paciente = lista[position].getIdEmpleado().getNombre();
+        String doctor = lista[position].getIdCliente().getNombre();
+        holder.tvFecha.setText("FECHA:" + lista[position].getFechaHora().substring(0,10));
+        holder.tvIdFicha.setText("ID:" + lista[position].getIdFichaClinica().toString());
+        holder.tvDoctor.setText("DOCTOR:" + (doctor==null?"NO":doctor));
+        holder.tvPaciente.setText("PACIENTE:" + (paciente==null?"NO":paciente));
 
 
     }
@@ -56,13 +60,16 @@ public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinic
     public static class AdapterFichaClinicaHolder extends RecyclerView.ViewHolder{
         TextView tvFecha;
         TextView tvIdFicha;
+        TextView tvPaciente;
+        TextView tvDoctor;
 
 
         public AdapterFichaClinicaHolder(View view){
             super(view);
-
             tvFecha= view.findViewById(R.id.fecha_clinica_txt);
             tvIdFicha= view.findViewById(R.id.id_clinica_txt);
+            tvPaciente= view.findViewById(R.id.paciente_clinica_txt);
+            tvDoctor= view.findViewById(R.id.doctor_clinica_txt);
 
         }
     }

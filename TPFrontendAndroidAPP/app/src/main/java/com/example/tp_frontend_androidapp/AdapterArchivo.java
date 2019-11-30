@@ -28,7 +28,7 @@ public class AdapterArchivo extends RecyclerView.Adapter<AdapterArchivo.AdapterA
     public AdapterArchivoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         
         View v= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.archivo_item_lista,parent,false);
+                .inflate(R.layout.archivo_item_lista_archivo,parent,false);
 
         return new AdapterArchivoHolder(v, listener);
                 
