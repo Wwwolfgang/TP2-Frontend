@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="83dp"
+    android:layout_marginTop="1dp"
+    android:padding="8dp"
+    android:background="#fff">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="72dp"
+        android:background="@drawable/imagen_tipo"
+        android:id="@+id/id_icono"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_nom_ape"
+            android:text="Nombre y Apellido"
+            android:textStyle="bold"
+            android:textSize="13dp"
+            android:paddingLeft="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_cedula"
+            android:text="Cedula"
+            android:textSize="11dp"
+            android:layout_marginTop="2dp"
+            android:paddingLeft="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_email"
+            android:text="Email"
+            android:textSize="11dp"
+            android:layout_marginTop="2dp"
+            android:paddingLeft="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_telefono"
+            android:text="Telefono"
+            android:textSize="11dp"
+            android:layout_marginTop="2dp"
+            android:paddingLeft="2dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
