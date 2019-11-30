@@ -1,4 +1,4 @@
-package ActividadPaciente;
+package actividadPaciente;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.tp_frontend_androidapp.MenuPrincipalActivity;
 import com.example.tp_frontend_androidapp.R;
 
 import java.util.Arrays;
 
-import ActividadPaciente.Adaptador.RecyclerViewAdaptador;
-import ActividadPaciente.Modelo.ListaPaciente;
-import ActividadPaciente.Modelo.Paciente;
-import ActividadPaciente.Servicio.GetPaciente;
+import actividadPaciente.Adaptador.RecyclerViewAdaptador;
+import actividadPaciente.Modelo.ListaPaciente;
+import actividadPaciente.Modelo.Paciente;
+import actividadPaciente.RegistroPaciente.CrearPaciente;
+import actividadPaciente.Servicio.GetPaciente;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PacientesActivity extends AppCompatActivity {
 
-    private final String url = "http://181.123.253.74:8080/stock-pwfe/";
+    private final String url = "http://gy7228.myfoscam.org:8080/stock-pwfe/";
     private Retrofit retrofit;
     private RecyclerView recyclerView;
 
@@ -35,6 +37,7 @@ public class PacientesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        getSupportActionBar().setTitle("Lista de Pacientes");
 
         recyclerView = findViewById(R.id.recyclerviewid);
         recyclerView.setHasFixedSize(true);
@@ -84,4 +87,14 @@ public class PacientesActivity extends AppCompatActivity {
         recyclerView.setAdapter(recly_adaptador);
     }
 
+    public void btn_crear_paciente(View view) {
+
+        Intent intentNewActivity;
+        Bundle b = new Bundle();
+
+        intentNewActivity = new Intent(PacientesActivity.this, CrearPaciente.class);
+        intentNewActivity.putExtras(b);
+        startActivity(intentNewActivity);
+
+    }
 }

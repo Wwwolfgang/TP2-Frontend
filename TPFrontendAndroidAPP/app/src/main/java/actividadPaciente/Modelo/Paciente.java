@@ -1,4 +1,4 @@
-package ActividadPaciente.Modelo;
+package actividadPaciente.Modelo;
 
 public class Paciente {
 

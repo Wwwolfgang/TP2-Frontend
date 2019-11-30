@@ -1,4 +1,4 @@
-package ActividadPaciente.Adaptador;
+package actividadPaciente.Adaptador;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import com.example.tp_frontend_androidapp.R;
 
 import java.util.List;
 
-import ActividadPaciente.Modelo.Paciente;
+import actividadPaciente.Modelo.Paciente;
 
 public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdaptador.MyViewHolder> {
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.tp_frontend_androidapp">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,11 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaDoctorActivity"></activity>
+        <activity android:name="actividadPaciente.RegistroPaciente.CrearPaciente"></activity>
+        <activity android:name=".ListaDoctorActivity" />
         <activity android:name=".ListaFichaActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".CrearFichaActivity" />
-        <activity android:name="ActividadPaciente.PacientesActivity" />
+        <activity android:name="actividadPaciente.PacientesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
