@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import ActividadPaciente.PacientesActivity;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -95,7 +96,7 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
             cargarCampos();
         }
         else{
-            LinearLayout ly = findViewById(R.id.crear_ficha_lt);
+            LinearLayout ly = findViewById(R.id.accion_ficha_lt);
             ly.removeView(findViewById(R.id.eliminar_ficha_btn));
         }
 
@@ -106,6 +107,9 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
 
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
+        Intent i = new Intent(this, PacientesActivity.class);
+        i.putExtra("busqueda","so");
+        startActivityForResult(i, 50);
     }
 
     public void obtenerDoctor(View v){
@@ -292,6 +296,11 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
                     doctor.setIdPersona(data.getIntExtra("doctorId",0));
                     doctor_txt.setText(data.getStringExtra("doctorNombre"));
                     break;
+                case 50:
+                    paciente=new Paciente();
+                    paciente.setIdPersona(data.getIntExtra("pacienteId",0));
+                    paciente_txt.setText(data.getStringExtra("pacienteNombre"));
+                    break;
             }
     }
 
@@ -328,9 +337,6 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
             return;
 
         }
-    //TODO: eliminar al obtener paciente y doctor
-        paciente = new Paciente();
-        paciente.setIdPersona(177);
 
         if(paciente == null){
             Toast.makeText(this,"Seleccione un paciente",Toast.LENGTH_SHORT).show();

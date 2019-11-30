@@ -8,27 +8,42 @@
     android:orientation="vertical"
     >
 
-
-    <Button
-        android:id="@+id/button3"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar Paciente"
-        android:onClick="obtenerPaciente"
-        />
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Paciente"
+            android:onClick="obtenerPaciente"
+            android:layout_weight="1"
+            />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Buscar Doctor"
-        android:onClick="obtenerDoctor"
-        />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Doctor"
+            android:onClick="obtenerDoctor"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
     >
+    <Button
+        android:id="@+id/ib_obtener_fecha_d"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="obtenerFechaDesde"
+        android:text="Fecha Desde"
+        />
     <EditText
         android:id="@+id/et_mostrar_fecha_d_picker"
         android:layout_width="wrap_content"
@@ -37,27 +52,12 @@
         android:inputType="date"
         android:enabled="false"
          />
-    <Button
-        android:id="@+id/ib_obtener_fecha_d"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:onClick="obtenerFechaDesde"
-        android:text="Fecha Desde"
-         />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <EditText
-            android:id="@+id/et_mostrar_fecha_h_picker"
-            android:layout_width="wrap_content"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:enabled="false"
-            />
         <Button
             android:id="@+id/ib_obtener_fecha_h"
             android:layout_width="wrap_content"
@@ -66,22 +66,55 @@
             android:onClick="obtenerFechaHasta"
             android:text="Fecha Hasta"
             />
-    </LinearLayout>
-    <Spinner
-        android:id="@+id/lista_categoria_spinner_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        <EditText
+            android:id="@+id/et_mostrar_fecha_h_picker"
+            android:layout_width="wrap_content"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:enabled="false"
+            />
 
-    <Spinner
-        android:id="@+id/lista_subcategoria_spinner_1"
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoria:"
+            android:layout_weight="1"/>
+        <Spinner
+            android:id="@+id/lista_categoria_spinner_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subcategoria:"
+            android:layout_weight="1"/>
+        <Spinner
+            android:id="@+id/lista_subcategoria_spinner_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            />
+
+    </LinearLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agregar"
         android:onClick="irAgregarFicha"
+        android:layout_gravity="right"
         />
 
     <androidx.recyclerview.widget.RecyclerView

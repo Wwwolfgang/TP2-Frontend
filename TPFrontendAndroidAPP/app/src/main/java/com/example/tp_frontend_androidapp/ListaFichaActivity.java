@@ -223,20 +223,23 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
 
     private void cargarLista(final FichaClinica[] fichas){
 
+
         adapter.lista = fichas;
-        adapter.notifyDataSetChanged();
         adapter.setListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intentNewActivity = new Intent(ListaFichaActivity.this, CrearFichaActivity.class);
                 Bundle b = new Bundle();
-
-                b.putSerializable("fichaEditar",fichas[rvFichas.getChildAdapterPosition(view)]);
+                Log.d("posicion",rvFichas.getChildAdapterPosition(view)+"");
+                Log.d("fichaId",adapter.lista[rvFichas.getChildAdapterPosition(view)].getIdFichaClinica().toString());
+                b.putSerializable("fichaEditar",adapter.lista[rvFichas.getChildAdapterPosition(view)]);
                 intentNewActivity.putExtras(b);
                 startActivity(intentNewActivity);
 
             }
         });
+        adapter.notifyDataSetChanged();
+
     }
 
     public void obtenerFechaDesde(View v){
