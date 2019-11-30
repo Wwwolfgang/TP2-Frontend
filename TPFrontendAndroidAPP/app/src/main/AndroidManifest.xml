@@ -17,6 +17,7 @@
         <activity android:name=".ListaFichaActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".CrearFichaActivity" />
+        <activity android:name="ActividadPaciente.PacientesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

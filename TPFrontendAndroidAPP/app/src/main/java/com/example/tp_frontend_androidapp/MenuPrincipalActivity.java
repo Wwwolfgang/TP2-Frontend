@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import ActividadPaciente.PacientesActivity;
+
 public class MenuPrincipalActivity extends AppCompatActivity {
 
     @Override
@@ -26,7 +28,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                 startActivity(intentNewActivity);
                 break;
             case "Pacientes":
-                intentNewActivity = new Intent(MenuPrincipalActivity.this, ReservaActivity.class);
+                intentNewActivity = new Intent(MenuPrincipalActivity.this, PacientesActivity.class);
                 intentNewActivity.putExtras(b);
                 startActivity(intentNewActivity);
                 break;
