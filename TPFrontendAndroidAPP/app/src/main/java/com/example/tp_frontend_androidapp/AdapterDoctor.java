@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tp_frontend_androidapp.modelos.Doctor;
 
-public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.AdapterDoctorHolder> implements View.OnClickListener {
+public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.AdapterDoctorHolder>  {
 
     private View.OnClickListener listener;
     Doctor[] lista;
@@ -48,10 +48,7 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.AdapterDoc
         return lista.length;
     }
 
-    @Override
-    public void onClick(View view) {
-        listener.onClick(view);
-    }
+
 
     public static class AdapterDoctorHolder extends RecyclerView.ViewHolder{
         TextView tvNombre;

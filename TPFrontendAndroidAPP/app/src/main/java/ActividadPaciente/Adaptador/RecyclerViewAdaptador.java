@@ -20,6 +20,7 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
 
     private Context contexto;
     private List<Paciente> pdata;
+    private View.OnClickListener listener;
 
     public RecyclerViewAdaptador(Context contexto, List<Paciente> pdata) {
         this.contexto = contexto;
@@ -33,8 +34,16 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
         View vista;
         LayoutInflater inflater = LayoutInflater.from(contexto);
         vista = inflater.inflate(R.layout.paciente_fila_item, parent, false);
-
+        if(listener!=null)vista.setOnClickListener(listener);
         return new MyViewHolder(vista);
+    }
+
+    public void setListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    public Paciente getPaciente(int pos) {
+        return pdata.get(pos);
     }
 
     @Override

@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import java.util.Calendar;
 
+import ActividadPaciente.PacientesActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,7 +86,9 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
 
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
-
+        Intent i = new Intent(this, PacientesActivity.class);
+        i.putExtra("busqueda","so");
+        startActivityForResult(i, 50);
     }
 
     public void obtenerDoctor(View v){
@@ -125,6 +128,12 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
                     doctor.setIdPersona(data.getIntExtra("doctorId",0));
 
                     break;
+                case 50:
+                    paciente=new Paciente();
+                    paciente.setIdPersona(data.getIntExtra("pacienteId",0));
+
+                    break;
+
             }
         }
     }

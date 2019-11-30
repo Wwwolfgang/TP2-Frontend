@@ -1,7 +1,9 @@
 package ActividadPaciente;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -62,7 +64,22 @@ public class PacientesActivity extends AppCompatActivity {
 
     private void mostrar(ListaPaciente<Paciente> response) {
 
-        RecyclerViewAdaptador recly_adaptador = new RecyclerViewAdaptador(getApplicationContext(), Arrays.asList(response.getLista()));
+        final RecyclerViewAdaptador recly_adaptador = new RecyclerViewAdaptador(getApplicationContext(), Arrays.asList(response.getLista()));
+        if(getIntent().hasExtra("busqueda")){
+            recly_adaptador.setListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = getIntent();
+                    i.putExtra("pacienteId", recly_adaptador.getPaciente(recyclerView.getChildAdapterPosition(v)).getIdPersona());
+                    i.putExtra("pacienteNombre", recly_adaptador.getPaciente(recyclerView.getChildAdapterPosition(v)).getNombre());
+                    setResult(RESULT_OK, i);
+                    finish();
+                }
+            });
+        }
+        else{
+            //TODO: ACA HAY QUE PONER EL LISTENER PARA IR A EDITAR
+        }
 
         recyclerView.setAdapter(recly_adaptador);
     }
