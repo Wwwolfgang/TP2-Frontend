@@ -1,6 +1,8 @@
-package com.example.tp_frontend_androidapp;
+package com.example.tp_frontend_androidapp.servicios;
 
-import java.io.File;
+import com.example.tp_frontend_androidapp.Lista;
+import com.example.tp_frontend_androidapp.modelos.FichaArchivo;
+import com.example.tp_frontend_androidapp.modelos.FichaClinica;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -15,12 +17,11 @@ import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 
 public interface FichaClinicaService {
     @GET("fichaClinica")
     Call<Lista<FichaClinica>> obtenerFichas(@Query("orderBy") String orderBy,
-                                                @Query("ejemplo") String ejemplo
+                                            @Query("ejemplo") String ejemplo
     );
 
 

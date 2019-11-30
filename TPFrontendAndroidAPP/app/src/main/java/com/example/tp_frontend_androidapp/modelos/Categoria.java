@@ -1,4 +1,4 @@
-package com.example.tp_frontend_androidapp;
+package com.example.tp_frontend_androidapp.modelos;
 
 import androidx.annotation.NonNull;
 

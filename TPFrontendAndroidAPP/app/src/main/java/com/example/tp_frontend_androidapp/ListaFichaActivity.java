@@ -14,13 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.example.tp_frontend_androidapp.modelos.Categoria;
+import com.example.tp_frontend_androidapp.modelos.Doctor;
+import com.example.tp_frontend_androidapp.modelos.FichaClinica;
+import com.example.tp_frontend_androidapp.modelos.Paciente;
+import com.example.tp_frontend_androidapp.modelos.SubCategoria;
 import com.google.gson.Gson;
 
-import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,11 +48,11 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
     RecyclerView rvFichas;
     AdapterFichaClinica adapter;
     //
-    FichaClinica [] lista= new FichaClinica[0];
+    FichaClinica[] lista= new FichaClinica[0];
     String fechaDesde;
     String fechaHasta;
     Paciente paciente;
-    Paciente doctor;
+    Doctor doctor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +85,13 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
 
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
+
     }
 
     public void obtenerDoctor(View v){
         //TODO Llamar a la actividad Doctor, poner el resultado en this.doctor
+        Intent i = new Intent(this, ListaDoctorActivity.class);
+        startActivityForResult(i, 40);
     }
 
     private void cargarCategorias(){
@@ -107,6 +112,21 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
             }
         });
 
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Comprobamos si el resultado de la segunda actividad es "RESULT_CANCELED".
+        if (resultCode == RESULT_OK) {
+            // Si es así mostramos mensaje de cancelado por pantalla.
+            switch (requestCode) {
+                case 40:
+                    doctor=new Doctor();
+                    doctor.setIdPersona(data.getIntExtra("doctorId",0));
+
+                    break;
+            }
+        }
     }
 
     @Override

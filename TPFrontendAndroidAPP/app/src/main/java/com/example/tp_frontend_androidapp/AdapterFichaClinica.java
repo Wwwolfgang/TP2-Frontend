@@ -8,10 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tp_frontend_androidapp.modelos.FichaClinica;
+
 public class AdapterFichaClinica extends RecyclerView.Adapter<AdapterFichaClinica.AdapterFichaClinicaHolder> implements View.OnClickListener {
 
     private View.OnClickListener listener;
-    FichaClinica [] lista;
+    FichaClinica[] lista;
 
 
     public void setListener(View.OnClickListener listener) {

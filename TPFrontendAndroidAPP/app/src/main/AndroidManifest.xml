@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaFichaActivity"></activity>
+        <activity android:name=".ListaDoctorActivity"></activity>
+        <activity android:name=".ListaFichaActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".CrearFichaActivity" />
         <activity android:name=".MainActivity">

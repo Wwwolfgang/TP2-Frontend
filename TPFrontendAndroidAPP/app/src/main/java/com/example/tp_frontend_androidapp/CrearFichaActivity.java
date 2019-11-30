@@ -22,6 +22,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tp_frontend_androidapp.modelos.Categoria;
+import com.example.tp_frontend_androidapp.modelos.Doctor;
+import com.example.tp_frontend_androidapp.modelos.FichaArchivo;
+import com.example.tp_frontend_androidapp.modelos.FichaClinica;
+import com.example.tp_frontend_androidapp.modelos.Paciente;
+import com.example.tp_frontend_androidapp.modelos.SubCategoria;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
@@ -42,7 +48,7 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
     ArrayList<FichaArchivo> lista_archivo = new ArrayList<>();
     ArrayList<Integer> archivos_a_eliminar = new ArrayList<>();
     Paciente paciente;
-    Paciente doctor;
+    Doctor doctor;
 
     RecyclerView rvArchivo;
     AdapterArchivo adapter;
@@ -104,6 +110,8 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
 
     public void obtenerDoctor(View v){
         //TODO Llamar a la actividad Doctor, poner el resultado en this.doctor
+        Intent i = new Intent(this, ListaDoctorActivity.class);
+        startActivityForResult(i, 40);
     }
 
     public void eliminarFicha(View v){
@@ -279,6 +287,11 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
                     }
 
                     break;
+                case 40:
+                    doctor=new Doctor();
+                    doctor.setIdPersona(data.getIntExtra("doctorId",0));
+                    doctor_txt.setText(data.getStringExtra("doctorNombre"));
+                    break;
             }
     }
 
@@ -317,8 +330,6 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
         }
     //TODO: eliminar al obtener paciente y doctor
         paciente = new Paciente();
-        doctor = new Paciente();
-        doctor.setIdPersona(4);
         paciente.setIdPersona(177);
 
         if(paciente == null){
