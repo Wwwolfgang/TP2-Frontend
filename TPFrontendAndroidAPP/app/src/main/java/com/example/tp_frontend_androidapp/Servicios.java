@@ -3,6 +3,7 @@ package com.example.tp_frontend_androidapp;
 import com.example.tp_frontend_androidapp.servicios.CategoriaService;
 import com.example.tp_frontend_androidapp.servicios.DoctorService;
 import com.example.tp_frontend_androidapp.servicios.FichaClinicaService;
+import com.example.tp_frontend_androidapp.servicios.ReservaService;
 import com.example.tp_frontend_androidapp.servicios.SubCategoriaService;
 
 import retrofit2.Retrofit;
@@ -23,6 +24,9 @@ public class Servicios {
 
     public static DoctorService getDoctorService() {
         return getClient("http://181.123.253.74:8080/stock-pwfe/").create(DoctorService.class);
+    }
+    public static ReservaService getReservaService() {
+        return getClient("http://181.123.253.74:8080/stock-pwfe/").create(ReservaService.class);
     }
 
     public static Retrofit getClient(String baseUrl) {
