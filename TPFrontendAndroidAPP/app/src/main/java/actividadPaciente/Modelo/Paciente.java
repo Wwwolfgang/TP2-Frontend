@@ -1,15 +1,38 @@
 package actividadPaciente.Modelo;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Paciente {
 
+    @SerializedName("idPersona")
+    @Expose
     private Integer idPersona;
+    @SerializedName("nombre")
+    @Expose
     private String nombre;
+    @SerializedName("apellido")
+    @Expose
     private String apellido;
+
+    @SerializedName("email")
+    @Expose
     private String email;
+    @SerializedName("telefono")
+    @Expose
     private String telefono;
+    @SerializedName("ruc")
+    @Expose
     private String ruc;
+    @SerializedName("cedula")
+    @Expose
     private String cedula;
+    @SerializedName("fechaNacimiento")
+    @Expose
     private String fechaNacimiento;
+    @SerializedName("tipoPersona")
+    @Expose
+    private String tipoPersona ;
 
     public Paciente(Integer id, String nombre, String apellido, String email, String telefono, String ruc, String cedula, String fechaNacimiento) {
         this.idPersona=id;
@@ -20,6 +43,15 @@ public class Paciente {
         this.ruc = ruc;
         this.cedula = cedula;
         this.fechaNacimiento = fechaNacimiento;
+        tipoPersona="FISICA";
+    }
+
+    public String getTipoPersona() {
+        return tipoPersona;
+    }
+
+    public void setTipoPersona(String tipoPersona) {
+        this.tipoPersona = tipoPersona;
     }
 
     public Integer getIdPersona() {

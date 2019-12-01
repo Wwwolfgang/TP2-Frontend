@@ -106,8 +106,8 @@ public class CrearPaciente extends AppCompatActivity {
                     fechaNacimientoInput.setError("Requiere la fecha de Nacimiento");
                     fechaNacimientoInput.requestFocus();
                 }
-
-                Call<Paciente> call = getApi().createPaciente(nombre, apellido, email, Integer.parseInt(telefono), Integer.parseInt(ruc), Integer.parseInt(cedula), "FISICA", fechaNacimiento);
+                Paciente pac= new Paciente(null,nombre, apellido, email, telefono, ruc, cedula, fechaNacimiento);
+                Call<Paciente> call = getApi().createPaciente(pac);
 
 
                 call.enqueue(new Callback<Paciente>() {

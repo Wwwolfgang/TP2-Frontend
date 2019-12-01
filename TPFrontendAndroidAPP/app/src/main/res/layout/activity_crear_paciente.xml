@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:hint="Fecha de nacimiento"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="date"
             android:id="@+id/id_fecha"
             android:textSize="20sp"/>
     </com.google.android.material.textfield.TextInputLayout>
