@@ -23,7 +23,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         //b.putString("usuario",campoNombreUsuario.getText().toString());
         switch (tag){
             case "Reservas":
-                intentNewActivity = new Intent(MenuPrincipalActivity.this, ReservaActivity.class);
+                intentNewActivity = new Intent(MenuPrincipalActivity.this, CrearReservaActivity.class);
                 intentNewActivity.putExtras(b);
                 startActivity(intentNewActivity);
                 break;

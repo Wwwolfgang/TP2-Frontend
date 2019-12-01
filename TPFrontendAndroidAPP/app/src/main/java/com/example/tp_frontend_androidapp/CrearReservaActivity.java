@@ -26,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ReservaActivity extends AppCompatActivity{
+public class CrearReservaActivity extends AppCompatActivity{
     private static final String CERO = "0";
     private static final String BARRA = "/";
 
@@ -53,7 +53,7 @@ public class ReservaActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reserva);
+        setContentView(R.layout.activity_crear_reserva);
         spinner_reserva = findViewById(R.id.horario_reserva_spinner);
         etFecha=findViewById(R.id.et_mostrar_fecha_picker);
 
@@ -116,7 +116,7 @@ public class ReservaActivity extends AppCompatActivity{
 
                     }
                 }
-                ArrayAdapter<Reserva> adapter=new ArrayAdapter<>(ReservaActivity.this, android.R.layout.simple_list_item_1,items);
+                ArrayAdapter<Reserva> adapter=new ArrayAdapter<>(CrearReservaActivity.this, android.R.layout.simple_list_item_1,items);
                 spinner_reserva.setAdapter(adapter);
             }
 
@@ -138,7 +138,7 @@ public class ReservaActivity extends AppCompatActivity{
         //b.putString("usuario",campoNombreUsuario.getText().toString());
         switch (tag) {
             case "Doctores":
-                intentNewActivity = new Intent(ReservaActivity.this, ListaDoctorActivity.class);
+                intentNewActivity = new Intent(CrearReservaActivity.this, ListaDoctorActivity.class);
                 intentNewActivity.putExtras(b);
                 startActivityForResult(intentNewActivity, 40);
                 if(fecha!=null){
@@ -147,7 +147,7 @@ public class ReservaActivity extends AppCompatActivity{
 
                 break;
             case "Pacientes":
-                intentNewActivity = new Intent(ReservaActivity.this, PacientesActivity.class);
+                intentNewActivity = new Intent(CrearReservaActivity.this, PacientesActivity.class);
                 intentNewActivity.putExtras(b);
                 intentNewActivity.putExtra("busqueda",0);
                 startActivityForResult(intentNewActivity, 41);
@@ -181,19 +181,19 @@ public class ReservaActivity extends AppCompatActivity{
     public void guardar(View v){
 
         if(this.paciente==null){
-            Toast.makeText(ReservaActivity.this, "No hay paciente seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CrearReservaActivity.this, "No hay paciente seleccionado", Toast.LENGTH_SHORT).show();
             return;
         }
         if(this.doctor==null){
-            Toast.makeText(ReservaActivity.this, "No hay doctor seleccionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CrearReservaActivity.this, "No hay doctor seleccionado", Toast.LENGTH_SHORT).show();
             return;
         }
         if(this.fecha==null){
-            Toast.makeText(ReservaActivity.this, "No hay fecha seleccionada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CrearReservaActivity.this, "No hay fecha seleccionada", Toast.LENGTH_SHORT).show();
         }
         Reserva hor=(Reserva) spinner_reserva.getSelectedItem();
         if(hor == null){
-            Toast.makeText(ReservaActivity.this,"Seleccione al menos un horario",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CrearReservaActivity.this,"Seleccione al menos un horario",Toast.LENGTH_SHORT).show();
             return;
 
         }
@@ -214,7 +214,7 @@ public class ReservaActivity extends AppCompatActivity{
             public void onResponse(Call<Reserva> call, Response<Reserva> response) {
 
                 Log.d("id", response.body().getIdReserva().toString());
-                Intent intent = new Intent(ReservaActivity.this,MenuPrincipalActivity.class);
+                Intent intent = new Intent(CrearReservaActivity.this,MenuPrincipalActivity.class);
 
                 startActivity(intent);
                 finish();

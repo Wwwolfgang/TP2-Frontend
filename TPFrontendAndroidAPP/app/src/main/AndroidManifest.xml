@@ -17,7 +17,7 @@
         <activity android:name=".ListaFichaActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".CrearFichaActivity" />
-        <activity android:name=".ReservaActivity" />
+        <activity android:name=".CrearReservaActivity" />
         <activity android:name="ActividadPaciente.PacientesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
