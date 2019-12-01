@@ -119,8 +119,8 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
-            pdata.clear();
-            pdata.addAll((List) results.values);
+            pdata = (List<Paciente>)results.values;
+
             notifyDataSetChanged();
         }
     };
