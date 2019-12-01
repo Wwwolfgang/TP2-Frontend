@@ -14,11 +14,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tp_frontend_androidapp.modelos.Paciente;
 import com.example.tp_frontend_androidapp.modelos.Reserva;
 
+import java.util.Calendar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditarAgregarReservaActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    //Calendario para obtener fecha & hora
+    public final Calendar c = Calendar.getInstance();
+
+    //Variables para obtener la fecha
+    final int mes = c.get(Calendar.MONTH);
+    final int dia = c.get(Calendar.DAY_OF_MONTH);
+    final int anio = c.get(Calendar.YEAR);
+
     Reserva reserva_modificar = null;
     Integer idReservaEditar = null;
     EditText txtObservacion;
@@ -74,6 +84,10 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
 
     private void cargarCampos(){
         txtObservacion.setText(reserva_modificar.getObservacion());
+        if(reserva_modificar.getFlagAsistio()==null){
+            AsistioSi.setChecked(false);
+        }else
+            AsistioSi.setChecked(true);
 
         doctor_txt.setText(reserva_modificar.getIdEmpleado().getNombre());
         paciente_txt.setText(reserva_modificar.getIdCliente().getNombre());
@@ -90,25 +104,32 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
         Reserva reserva=new Reserva();
         if(reserva_modificar != null){
 
-            reserva.setIdReserva(reserva_modificar.getIdReserva());
-            reserva.setObservacion(txtObservacion.getText().toString());
+            if(reserva_modificar.getFlagAsistio()==null && reserva_modificar.getFlagEstado().compareTo("C")!= 0 && compararFecha(reserva_modificar.getFecha())<0){
+                Toast.makeText(EditarAgregarReservaActivity.this,"Reserva no se puede modificar",Toast.LENGTH_LONG).show();
+            }else {
 
-            reserva.setFlagAsistio(AsistioSi.isChecked()?"S":"N");
+                reserva.setIdReserva(reserva_modificar.getIdReserva());
+                reserva.setObservacion(txtObservacion.getText().toString());
+
+                reserva.setFlagAsistio(AsistioSi.isChecked() ? "S" : "N");
+
+                Call<Reserva> callReserva = Servicios.getReservaService().modificarReserva(reserva, "pedro");
+                callReserva.enqueue(new Callback<Reserva>() {
+                    @Override
+                    public void onResponse(Call<Reserva> call, Response<Reserva> response) {
+                        Toast.makeText(EditarAgregarReservaActivity.this, "Reserva modificada exitosamente", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Reserva> call, Throwable t) {
+                        Log.w("warning", t.getCause().toString());
+                    }
+                });
+            }
         }
 
-        Call<Reserva> callReserva = Servicios.getReservaService().modificarReserva(reserva,"pedro");
-        callReserva.enqueue(new Callback<Reserva>() {
-            @Override
-            public void onResponse(Call<Reserva> call, Response<Reserva> response) {
-                Toast.makeText(EditarAgregarReservaActivity.this,"Reservada modificada exitosamente",Toast.LENGTH_LONG).show();
-                finish();
-            }
 
-            @Override
-            public void onFailure(Call<Reserva> call, Throwable t) {
-                Log.w("warning", t.getCause().toString());
-            }
-        });
     }
     public static boolean isEmpty(EditText editText) {
 
@@ -121,5 +142,26 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
 
         editText.setError(errorString);
 
+    }
+
+    public int compararFecha(String fechaReserva){
+        int DIA;
+        int Mes;
+        int Anio;
+        final int mesActual = mes + 1;
+
+
+        Anio = Integer.parseInt(fechaReserva.substring(0,3));
+        Mes = Integer.parseInt(fechaReserva.substring(5,6));
+        DIA = Integer.parseInt(fechaReserva.substring(8,9));
+
+        if(Anio < anio)
+            return -1;
+        else if (Mes < mesActual)
+            return  -1;
+        else if(DIA <= dia)
+            return -1;
+        else
+            return 1;
     }
 }

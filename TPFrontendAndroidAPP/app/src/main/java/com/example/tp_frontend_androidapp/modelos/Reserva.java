@@ -30,6 +30,9 @@ public class Reserva implements Serializable {
     @SerializedName("flagAsistio")
     @Expose
     private String flagAsistio;
+    @SerializedName("flagEstado")
+    @Expose
+    private String flagEstado;
     @SerializedName("observacion")
     @Expose
     private String observacion;
@@ -56,8 +59,17 @@ public class Reserva implements Serializable {
         return fecha;
     }
 
+    public String getFlagEstado() {
+        return flagEstado;
+    }
+
+    public void setFlagEstado(String flagEstado) {
+        this.flagEstado = flagEstado;
+    }
+
     public void setFecha(String fecha) {
         this.fecha = fecha;
+
     }
 
     public String getFechaDesdeCadena() {

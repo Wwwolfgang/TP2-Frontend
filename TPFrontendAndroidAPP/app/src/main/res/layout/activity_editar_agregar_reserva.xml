@@ -87,7 +87,7 @@
         android:id="@+id/cancelar_reserva_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar"
+        android:text="Cancelar reserva"
         android:onClick="cancelarReserva"
         />
 

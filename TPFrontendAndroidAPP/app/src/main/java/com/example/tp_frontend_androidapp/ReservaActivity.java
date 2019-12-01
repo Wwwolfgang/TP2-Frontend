@@ -65,6 +65,7 @@ public class ReservaActivity extends AppCompatActivity implements AdapterView.On
         rvReservas.setHasFixedSize(true);
         adapter=new AdapterReserva(lista);
         rvReservas.setAdapter(adapter);
+        fechaActual(anio,mes,dia);
     }
 
     @Override
@@ -217,5 +218,19 @@ public class ReservaActivity extends AppCompatActivity implements AdapterView.On
         //Muestro el widget
         recogerFecha.show();
 
+    }
+
+    public void fechaActual(int year,int month,int dayOfMonth){
+        final int mesActual = month + 1;
+        //Formateo el día obtenido: antepone el 0 si son menores de 10
+        String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+        //Formateo el mes obtenido: antepone el 0 si son menores de 10
+        String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+        //Muestro la fecha con el formato deseado
+        fechaDesde = year + mesFormateado + diaFormateado;
+        fechaHasta = year + mesFormateado + diaFormateado;
+        etFechaD.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+        etFechaH.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+        cargarLista();
     }
 }
