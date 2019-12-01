@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.tp_frontend_androidapp.MenuPrincipalActivity;
 import com.example.tp_frontend_androidapp.R;
 
 import java.util.Arrays;
@@ -19,7 +18,7 @@ import actividadPaciente.Adaptador.RecyclerViewAdaptador;
 import actividadPaciente.Modelo.ListaPaciente;
 import actividadPaciente.Modelo.Paciente;
 import actividadPaciente.RegistroPaciente.CrearPaciente;
-import actividadPaciente.Servicio.GetPaciente;
+import actividadPaciente.Servicio.ApiPaciente;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +46,7 @@ public class PacientesActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        GetPaciente getpacient = retrofit.create(GetPaciente.class);
+        ApiPaciente getpacient = retrofit.create(ApiPaciente.class);
 
         Call<ListaPaciente<Paciente>> listcall = getpacient.getDatos();
 
