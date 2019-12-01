@@ -21,6 +21,9 @@ public class Reserva implements Serializable {
     @SerializedName("flagAsistio")
     @Expose
     private String flagAsistio;
+    @SerializedName("flagEstado")
+    @Expose
+    private String flagEstado;
     @SerializedName("observacion")
     @Expose
     private String observacion;
@@ -79,6 +82,10 @@ public class Reserva implements Serializable {
     public String getFlagAsistio(){return flagAsistio;}
 
     public void setFlagAsistio(String flagAsistio){ this.flagAsistio = flagAsistio;}
+
+    public String getFlagEstado(){return flagEstado;}
+
+    public void setFlagEstado(String flagEstado){ this.flagEstado = flagEstado;}
 
     public String getObservacion(){return observacion;}
 
