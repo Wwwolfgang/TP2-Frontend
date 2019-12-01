@@ -3,19 +3,21 @@ package com.example.tp_frontend_androidapp;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Reserva {
+import java.io.Serializable;
+
+public class Reserva implements Serializable {
     @SerializedName("idReserva")
     @Expose
     private Integer idReserva;
     @SerializedName("fechaCadena")
     @Expose
     private String fechaCadena;
-    @SerializedName("horainicioCadena")
+    @SerializedName("horaInicio")
     @Expose
-    private String horainicioCadena;
-    @SerializedName("horafinCadena")
+    private String horaInicio;
+    @SerializedName("horaFin")
     @Expose
-    private String horafinCadena;
+    private String horaFin;
     @SerializedName("flagAsistio")
     @Expose
     private String flagAsistio;
@@ -25,14 +27,39 @@ public class Reserva {
     @SerializedName("posicion")
     @Expose
     private Integer posicion;
-    /*@SerializedName("idEmpleado")
+    @SerializedName("idEmpleado")
     @Expose
-    private Integer idEmpleado;*/
-    //private Integer idFichaClinica;
-    //private Integer idCliente;
+    private Paciente idEmpleado;
+
+    @SerializedName("idCliente")
+    @Expose
+    private Paciente idCliente;
+    @SerializedName("fechaHoraCadena")
+    @Expose
+    private String fechaHoraCadena;
+
+    @SerializedName("fechaDesdeCadena")
+    @Expose
+    private String fechaDesdeCadena;
+
+    @SerializedName("fechaHastaCadena")
+    @Expose
+    private String fechaHastaCadena;
+
+    @SerializedName("fecha")
+    @Expose
+    private String fecha;
 
     public Reserva(){
     }
+    public String getFechaHora() {
+        return fecha;
+    }
+
+    public void setFechaHora(String fechaHora) {
+        this.fecha = fechaHora;
+    }
+
     public Integer getIdReserva(){return idReserva;}
 
     public void setIdReserva(Integer idReserva){this.idReserva = idReserva;}
@@ -41,13 +68,13 @@ public class Reserva {
 
     public void setFechaCadena(String fechaCadena){this.fechaCadena = fechaCadena;}
 
-    public String getHorainicioCadena(){return horainicioCadena;}
+    public String getHorainicioCadena(){return horaInicio;}
 
-    public void setHorainicioCadena(String horainicioCadena){this.horainicioCadena = horainicioCadena;}
+    public void setHorainicioCadena(String horainicioCadena){this.horaInicio = horainicioCadena;}
 
-    public String getHorafinCadena(){return horafinCadena;}
+    public String getHorafinCadena(){return horaFin;}
 
-    public void setHorafinCadena(String horafinCadena){this.horafinCadena = horafinCadena;}
+    public void setHorafinCadena(String horafinCadena){this.horaFin = horafinCadena;}
 
     public String getFlagAsistio(){return flagAsistio;}
 
@@ -63,6 +90,38 @@ public class Reserva {
 
     public void setPosicion(Integer posicion) {
         this.posicion = posicion;
+    }
+
+    public String getFechaDesdeCadena() {
+        return fechaDesdeCadena;
+    }
+
+    public void setFechaDesdeCadena(String fechaDesdeCadena) {
+        this.fechaDesdeCadena = fechaDesdeCadena;
+    }
+
+    public String getFechaHastaCadena() {
+        return fechaHastaCadena;
+    }
+
+    public void setFechaHastaCadena(String fechaHastaCadena) {
+        this.fechaHastaCadena = fechaHastaCadena;
+    }
+
+    public Paciente getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(Paciente idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public Paciente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Paciente idCliente) {
+        this.idCliente = idCliente;
     }
 }
 
