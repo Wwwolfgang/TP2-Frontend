@@ -77,8 +77,8 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
 
         doctor_txt.setText(reserva_modificar.getIdEmpleado().getNombre());
         paciente_txt.setText(reserva_modificar.getIdCliente().getNombre());
-        HoraInicio_txt.setText(reserva_modificar.getHorainicioCadena());
-        HoraFin_txt.setText(reserva_modificar.getHorafinCadena());
+        HoraInicio_txt.setText(reserva_modificar.getHoraInicio());
+        HoraFin_txt.setText(reserva_modificar.getHoraFin());
     }
 
     public void guardar(View view) {

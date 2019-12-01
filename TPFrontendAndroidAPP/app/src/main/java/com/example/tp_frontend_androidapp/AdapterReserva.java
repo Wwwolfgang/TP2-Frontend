@@ -28,7 +28,7 @@ public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterR
 
     @Override
     public void onBindViewHolder(@NonNull AdapterReservaHolder holder, int position) {
-        holder.tvFecha.setText(lista[position].getFechaHora());
+        holder.tvFecha.setText(lista[position].getFecha());
 
         holder.tvIdReserva.setText(lista[position].getIdReserva().toString());
     }

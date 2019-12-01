@@ -73,6 +73,11 @@ public class ReservaActivity extends AppCompatActivity implements AdapterView.On
         cargarLista();
     }
 
+    public void irAgregarReserva(View v){
+        Intent intent = new Intent(this, CrearReservaActivity.class);
+        startActivity(intent);
+    }
+
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
         Intent intent = new Intent(this, PacientesActivity.class);
