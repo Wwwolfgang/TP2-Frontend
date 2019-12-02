@@ -3,21 +3,57 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
     <Button
         android:id="@+id/irDoctores"
-        android:layout_width="237dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="abrir"
         android:tag="Doctores"
         android:text="Doctores" />
 
+        <TextView
+            android:id="@+id/textDoc"
+            android:layout_width="226dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:freezesText="false"
+            android:tag="textDoc"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
     <Button
         android:id="@+id/button2"
-        android:layout_width="240dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="abrir"
         android:tag="Pacientes"
         android:text="Pacientes" />
+
+        <TextView
+            android:id="@+id/textPac"
+            android:layout_width="222dp"
+            android:layout_height="48dp"
+            android:layout_gravity="right"
+            android:freezesText="false"
+            android:tag="textDoc"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,4 +88,5 @@
         android:layout_height="wrap_content"
         android:onClick="guardar"
         android:text="Guardar" />
+
 </LinearLayout>

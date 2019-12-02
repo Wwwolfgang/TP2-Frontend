@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.tp_frontend_androidapp.modelos.Doctor;
 import com.example.tp_frontend_androidapp.modelos.FichaClinica;
@@ -50,7 +51,7 @@ public class ListaDoctorActivity extends AppCompatActivity {
     private void cargarLista(){
         Doctor doctor = null;
         String like = null;
-        String nombre = nombre_doctor.getText().toString().trim();
+        final String nombre = nombre_doctor.getText().toString().trim();
 
         doctor = new Doctor();
         doctor.setSoloUsuariosDelSistema(true);
@@ -80,6 +81,7 @@ public class ListaDoctorActivity extends AppCompatActivity {
 
     private void cargarLista(final Doctor[] fichas){
 
+        //String s=adapter.lista[rvDoctores.getChildAdapterPosition(view)].getNombre();
         adapter.lista = fichas;
         adapter.notifyDataSetChanged();
         adapter.setListener(new View.OnClickListener(){
@@ -93,5 +95,6 @@ public class ListaDoctorActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }
