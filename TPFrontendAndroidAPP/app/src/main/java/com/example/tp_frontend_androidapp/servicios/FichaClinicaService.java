@@ -34,7 +34,7 @@ public interface FichaClinicaService {
     Call<FichaClinica> modificarFicha(@Body FichaClinica fichaClinica, @Header("usuario") String usuario);
 
     @DELETE("fichaClinica/{id}")
-    Call<Integer> cancelarFicha(@Path("id") int id);
+    Call<Void> cancelarFicha(@Path("id") int id);
 
     @GET("fichaClinica/{id}")
     Call<FichaClinica> obtenerFicha(@Path("id") int id);

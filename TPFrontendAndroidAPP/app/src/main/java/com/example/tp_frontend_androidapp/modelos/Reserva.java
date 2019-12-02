@@ -103,11 +103,7 @@ public class Reserva implements Serializable {
     public void setIdCliente(Paciente idCliente) {
         this.idCliente = idCliente;
     }
-    /*@SerializedName("idEmpleado")
-    @Expose
-    private Integer idEmpleado;*/
-    //private Integer idFichaClinica;
-    //private Integer idCliente;
+
 
     @NonNull
     @Override

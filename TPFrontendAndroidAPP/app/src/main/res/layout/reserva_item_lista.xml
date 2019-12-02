@@ -12,10 +12,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtIdReservaItem"/>
+        android:id="@+id/txtFechaItem"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtObservacionItem"/>
+        android:id="@+id/txtPacienteItem"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDoctorItem"/>
 </LinearLayout>
 </androidx.cardview.widget.CardView>

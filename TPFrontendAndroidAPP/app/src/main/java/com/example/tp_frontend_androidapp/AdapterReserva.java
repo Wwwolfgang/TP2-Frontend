@@ -8,12 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tp_frontend_androidapp.modelos.Paciente;
 import com.example.tp_frontend_androidapp.modelos.Reserva;
 
 public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterReservaHolder> implements View.OnClickListener{
     private View.OnClickListener listener;
 
     Reserva[] lista;
+    Paciente paciente;
+    Paciente doctor;
 
     public AdapterReserva(Reserva[] lista){super(); this.lista = lista;}
 
@@ -30,7 +33,9 @@ public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterR
     public void onBindViewHolder(@NonNull AdapterReservaHolder holder, int position) {
         holder.tvFecha.setText(lista[position].getFecha());
 
-        holder.tvIdReserva.setText(lista[position].getIdReserva().toString());
+        holder.tvPaciente.setText(lista[position].getIdCliente().getNombre());
+
+        holder.tvDoctor.setText(lista[position].getIdEmpleado().getNombre());
     }
 
     @Override
@@ -51,12 +56,15 @@ public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterR
 
 
     public static class AdapterReservaHolder extends RecyclerView.ViewHolder {
-        TextView tvIdReserva;
+
         TextView tvFecha;
+        TextView tvPaciente;
+        TextView tvDoctor;
         public AdapterReservaHolder(View v){
             super(v);
-            tvIdReserva = v.findViewById(R.id.txtIdReservaItem);
-            tvFecha = v.findViewById(R.id.txtObservacionItem);
+            tvPaciente = v.findViewById(R.id.txtPacienteItem);
+            tvDoctor = v.findViewById(R.id.txtDoctorItem);
+            tvFecha = v.findViewById(R.id.txtFechaItem);
 
         }
     }
