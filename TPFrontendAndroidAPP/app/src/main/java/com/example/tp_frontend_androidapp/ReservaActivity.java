@@ -82,13 +82,14 @@ public class ReservaActivity extends AppCompatActivity implements AdapterView.On
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
         Intent intent = new Intent(this, PacientesActivity.class);
-        intent.putExtra("busqueda",0);
+        intent.putExtra("busqueda","paciente");
         startActivityForResult(intent,40);
     }
 
     public void obtenerDoctor(View v){
         //TODO Llamar a la actividad Doctor, poner el resultado en this.doctor
-        Intent intent = new Intent(this, ListaDoctorActivity.class);
+        Intent intent = new Intent(this, PacientesActivity.class);
+        intent.putExtra("busqueda","doctor");
         startActivityForResult(intent,50);
     }
 
@@ -139,12 +140,14 @@ public class ReservaActivity extends AppCompatActivity implements AdapterView.On
         callReserva.enqueue(new Callback<Lista<Reserva>>() {
             @Override
             public void onResponse(Call<Lista<Reserva>> call, Response<Lista<Reserva>> response) {
-                cargarLista(response.body().getLista());
+                if (response.body() != null) {
+                    cargarLista(response.body().getLista());
+                }
             }
 
             @Override
             public void onFailure(Call<Lista<Reserva>> call, Throwable t) {
-                Log.w("warning",t.getCause().toString());
+                Log.w("warning",t.getCause());
             }
         });
 

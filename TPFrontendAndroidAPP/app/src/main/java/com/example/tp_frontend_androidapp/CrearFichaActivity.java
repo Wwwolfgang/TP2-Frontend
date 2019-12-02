@@ -108,28 +108,34 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
         Intent i = new Intent(this, PacientesActivity.class);
-        i.putExtra("busqueda","so");
+        i.putExtra("busqueda","paciente");
         startActivityForResult(i, 50);
     }
 
     public void obtenerDoctor(View v){
         //TODO Llamar a la actividad Doctor, poner el resultado en this.doctor
-        Intent i = new Intent(this, ListaDoctorActivity.class);
+        Intent i = new Intent(this, PacientesActivity.class);
+        i.putExtra("busqueda","doctor");
         startActivityForResult(i, 40);
     }
 
     public void eliminarFicha(View v){
-        Call<Integer> callEliminarFicha = Servicios.getFichaClinicaService().cancelarFicha(ficha_modificar.getIdFichaClinica());
-        callEliminarFicha.enqueue(new Callback<Integer>() {
+        Call<Void> callEliminarFicha = Servicios.getFichaClinicaService().cancelarFicha(ficha_modificar.getIdFichaClinica());
+        callEliminarFicha.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                Toast.makeText(CrearFichaActivity.this,"Ficha eliminada",Toast.LENGTH_SHORT).show();
-                finish();
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code()<400){
+                    Toast.makeText(CrearFichaActivity.this,"Ficha eliminada",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else{
+                    Toast.makeText(CrearFichaActivity.this,"Ocurrio un error!!",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(CrearFichaActivity.this,"Ocurrio un error!!",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -371,6 +377,7 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
         callCategoria.enqueue(new Callback<FichaClinica>() {
             @Override
             public void onResponse(Call<FichaClinica> call, Response<FichaClinica> response) {
+                if(response.code()<400){
                 Integer id = response.body().getIdFichaClinica();
                 Log.d("idFicha",id.toString());
                 for(FichaArchivo archivo:lista_archivo){
@@ -419,13 +426,19 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
                     });
 
                 }
-                Toast.makeText(CrearFichaActivity.this,"Agregado Correctamente"+id,Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(CrearFichaActivity.this,"Guardado Correctamente",Toast.LENGTH_SHORT).show();
                 finish();
+                }
+                else{
+                    Toast.makeText(CrearFichaActivity.this,"Ocurrio un error",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<FichaClinica> call, Throwable t) {
-                Log.w("warning",t.getCause().toString());
+                Log.w("warning",t.getCause());
+                Toast.makeText(CrearFichaActivity.this,"Ocurrio un error",Toast.LENGTH_SHORT).show();
             }
         });
 

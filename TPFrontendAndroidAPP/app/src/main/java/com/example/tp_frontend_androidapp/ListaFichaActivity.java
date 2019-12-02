@@ -87,13 +87,14 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
     public void obtenerPaciente(View v){
         //TODO LLamar a la actividad Paciente, poner el resultado en this.paciente
         Intent i = new Intent(this, PacientesActivity.class);
-        i.putExtra("busqueda","so");
+        i.putExtra("busqueda","paciente");
         startActivityForResult(i, 50);
     }
 
     public void obtenerDoctor(View v){
         //TODO Llamar a la actividad Doctor, poner el resultado en this.doctor
-        Intent i = new Intent(this, ListaDoctorActivity.class);
+        Intent i = new Intent(this, PacientesActivity.class);
+        i.putExtra("busqueda","doctor");
         startActivityForResult(i, 40);
     }
 
@@ -102,7 +103,10 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
         callCategoria.enqueue(new Callback<Lista<Categoria>>() {
             @Override
             public void onResponse(Call<Lista<Categoria>> call, Response<Lista<Categoria>> response) {
-                Categoria [] items = response.body().getLista();
+                Categoria [] items = new Categoria[0];
+                if (response.body() != null) {
+                    items = response.body().getLista();
+                }
 
                 ArrayAdapter<Categoria> adapter = new ArrayAdapter<>(ListaFichaActivity.this, android.R.layout.simple_list_item_1,items);
 
@@ -111,7 +115,7 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
 
             @Override
             public void onFailure(Call<Lista<Categoria>> call, Throwable t) {
-                Log.w("warning",t.getCause().toString());
+                Log.w("warning",t.getCause());
             }
         });
 
@@ -185,12 +189,14 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
         callFichas.enqueue(new Callback<Lista<FichaClinica>>() {
             @Override
             public void onResponse(Call<Lista<FichaClinica>> call, Response<Lista<FichaClinica>> response) {
-                cargarLista(response.body().getLista());
+                if (response.body() != null) {
+                    cargarLista(response.body().getLista());
+                }
             }
 
             @Override
             public void onFailure(Call<Lista<FichaClinica>> call, Throwable t) {
-                Log.w("warning",t.getCause().toString());
+                Log.w("warning",t.getCause());
             }
         });
 
@@ -207,7 +213,10 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
         callCategoria.enqueue(new Callback<Lista<SubCategoria>>() {
             @Override
             public void onResponse(Call<Lista<SubCategoria>> call, Response<Lista<SubCategoria>> response) {
-                SubCategoria [] items = response.body().getLista();
+                SubCategoria [] items = new SubCategoria[0];
+                if (response.body() != null) {
+                    items = response.body().getLista();
+                }
 
                 ArrayAdapter<SubCategoria> adapter = new ArrayAdapter<>(ListaFichaActivity.this, android.R.layout.simple_list_item_1,items);
 
@@ -216,7 +225,7 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
 
             @Override
             public void onFailure(Call<Lista<SubCategoria>> call, Throwable t) {
-                Log.w("warning",t.getCause().toString());
+                Log.w("warning",t.getCause());
             }
         });
     }

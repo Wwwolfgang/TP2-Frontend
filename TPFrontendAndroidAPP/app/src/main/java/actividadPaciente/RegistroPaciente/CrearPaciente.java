@@ -135,20 +135,24 @@ public class CrearPaciente extends AppCompatActivity {
                     call.enqueue(new Callback<Paciente>() {
                         @Override
                         public void onResponse(Call<Paciente> call, Response<Paciente> response) {
+                            if(response.code()<400){
+                                Toast.makeText(CrearPaciente.this, "Registro con exito", Toast.LENGTH_LONG).show();
 
-                            Toast.makeText(CrearPaciente.this, "Registro con exito", Toast.LENGTH_LONG).show();
+                                Intent intentNewActivity;
+                                Bundle b = new Bundle();
 
-                            Intent intentNewActivity;
-                            Bundle b = new Bundle();
-
-                            intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
-                            intentNewActivity.putExtras(b);
-                            startActivity(intentNewActivity);
+                                intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
+                                intentNewActivity.putExtras(b);
+                                startActivity(intentNewActivity);
+                            }
+                            else{
+                                Toast.makeText(CrearPaciente.this, "Ocurrio un error", Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
                         public void onFailure(Call<Paciente> call, Throwable t) {
-                            Toast.makeText(CrearPaciente.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(CrearPaciente.this, "Ocurrio un error", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -157,19 +161,25 @@ public class CrearPaciente extends AppCompatActivity {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            Toast.makeText(CrearPaciente.this, "Guardado con exito", Toast.LENGTH_LONG).show();
+                            if(response.code()<400) {
+                                Toast.makeText(CrearPaciente.this, "Modificado con exito", Toast.LENGTH_LONG).show();
 
-                            Intent intentNewActivity;
-                            Bundle b = new Bundle();
+                                Intent intentNewActivity;
+                                Bundle b = new Bundle();
 
-                            intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
-                            intentNewActivity.putExtras(b);
-                            startActivity(intentNewActivity);
+                                intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
+                                intentNewActivity.putExtras(b);
+                                startActivity(intentNewActivity);
+                            }
+                            else{
+                                Toast.makeText(CrearPaciente.this, "Ocurrio un error", Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Log.d("sa","as");
+
+                            Toast.makeText(CrearPaciente.this, "Ocurrio un error", Toast.LENGTH_LONG).show();
                         }
                     });
                 }

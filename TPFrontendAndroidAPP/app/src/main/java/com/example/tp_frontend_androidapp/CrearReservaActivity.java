@@ -102,14 +102,14 @@ public class CrearReservaActivity extends AppCompatActivity{
             @Override
             public void onResponse(Call<Reserva[]> call, Response<Reserva[]> response) {
                 Reserva[] items=response.body();
-                if(items.length==0){
+                if((items != null ? items.length : 0) ==0){
                     etFecha.setError("No hay horario en esta fecha");
 
                 }
                 else{
                     etFecha.setError(null);
                 }
-                for(Reserva r:items){
+                for(Reserva r: items != null ? items : new Reserva[0]){
                     if(r.getHoraFin().length()==8){//SI EL FORMATO ES HH:MM:SS
                         r.setHoraFinCadena(r.getHoraFin().substring(0,5));
                     }
@@ -147,19 +147,18 @@ public class CrearReservaActivity extends AppCompatActivity{
         //b.putString("usuario",campoNombreUsuario.getText().toString());
         switch (tag) {
             case "Doctores":
-                intentNewActivity = new Intent(CrearReservaActivity.this, ListaDoctorActivity.class);
-                intentNewActivity.putExtras(b);
-                startActivityForResult(intentNewActivity, 40);
+                Intent i = new Intent(this, PacientesActivity.class);
+                i.putExtra("busqueda","doctor");
+                startActivityForResult(i, 40);
                 if(fecha!=null){
                     cargarHorarios();
                 }
 
                 break;
             case "Pacientes":
-                intentNewActivity = new Intent(CrearReservaActivity.this, PacientesActivity.class);
-                intentNewActivity.putExtras(b);
-                intentNewActivity.putExtra("busqueda",0);
-                startActivityForResult(intentNewActivity, 41);
+                Intent i1 = new Intent(this, PacientesActivity.class);
+                i1.putExtra("busqueda","paciente");
+                startActivityForResult(i1, 41);
 
                 break;
 
@@ -225,7 +224,7 @@ public class CrearReservaActivity extends AppCompatActivity{
 
         }
 
-        Reserva reserva= new Reserva();
+        final Reserva reserva= new Reserva();
         reserva.setFechaCadena(this.fecha);
         reserva.setHoraInicioCadena(hor.getHoraInicioCadena().replace(":",""));
         reserva.setHoraFinCadena(hor.getHoraFinCadena().replace(":",""));
@@ -236,14 +235,19 @@ public class CrearReservaActivity extends AppCompatActivity{
         callguardar.enqueue(new Callback<Reserva>() {
             @Override
             public void onResponse(Call<Reserva> call, Response<Reserva> response) {
-
-                Log.d("id", response.body().getIdReserva().toString());
-                finish();
+                if(response.code()<400) {
+                    Log.d("id", response.body().getIdReserva().toString());
+                    Toast.makeText(CrearReservaActivity.this, "Creado Correctamente!!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else{
+                    Toast.makeText(CrearReservaActivity.this, "Ocurrio un error!!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<Reserva> call, Throwable t) {
-
+                Toast.makeText(CrearReservaActivity.this, "Ocurrio un error!!", Toast.LENGTH_SHORT).show();
             }
         });
 

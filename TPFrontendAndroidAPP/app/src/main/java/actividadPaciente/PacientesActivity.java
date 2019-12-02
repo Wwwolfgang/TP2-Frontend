@@ -1,5 +1,6 @@
 package actividadPaciente;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tp_frontend_androidapp.MenuPrincipalActivity;
 import com.example.tp_frontend_androidapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
 
@@ -37,12 +39,25 @@ public class PacientesActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private RecyclerView recyclerView;
     private RecyclerViewAdaptador recyclerViewAdaptador;
-
+    private String busquedaId = "pacienteId";
+    private String busquedaNombre = "pacienteNombre";
+    private String ejemplo;
+    private FloatingActionButton btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        btn = findViewById(R.id.crear_paciente_float);
         getSupportActionBar().setTitle("Lista de Pacientes");
+        if(getIntent().hasExtra("busqueda")){
+            btn.hide();
+            if(getIntent().getStringExtra("busqueda").compareTo("paciente")!=0){
+                getSupportActionBar().setTitle("Lista de Doctores");
+                busquedaId = "doctorId";
+                busquedaNombre = "doctorNombre";
+                ejemplo = "{\"soloUsuariosDelSistema\":true}";
+            }
+        }
 
 
 
@@ -61,7 +76,8 @@ public class PacientesActivity extends AppCompatActivity {
 
         ApiPaciente getpacient = retrofit.create(ApiPaciente.class);
 
-        Call<ListaPaciente<Paciente>> listcall = getpacient.getDatos();
+
+        Call<ListaPaciente<Paciente>> listcall = getpacient.getDatos(ejemplo);
 
         listcall.enqueue(new Callback<ListaPaciente<Paciente>>() {
             @Override
@@ -98,8 +114,8 @@ public class PacientesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent i = getIntent();
-                    i.putExtra("pacienteId", recyclerViewAdaptador.getPaciente(recyclerView.getChildAdapterPosition(v)).getIdPersona());
-                    i.putExtra("pacienteNombre", recyclerViewAdaptador.getPaciente(recyclerView.getChildAdapterPosition(v)).getNombre());
+                    i.putExtra(busquedaId, recyclerViewAdaptador.getPaciente(recyclerView.getChildAdapterPosition(v)).getIdPersona());
+                    i.putExtra(busquedaNombre, recyclerViewAdaptador.getPaciente(recyclerView.getChildAdapterPosition(v)).getNombre());
                     setResult(RESULT_OK, i);
                     finish();
                 }
