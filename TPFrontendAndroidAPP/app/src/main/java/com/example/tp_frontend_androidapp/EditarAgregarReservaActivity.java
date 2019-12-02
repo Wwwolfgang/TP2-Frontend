@@ -67,24 +67,28 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
     public void onNothingSelected(AdapterView<?> parent) {
     }
     public void cancelarReserva(View v){
-        Call<Integer> callCancelarReserva = Servicios.getReservaService().cancelarReserva(reserva_modificar.getIdReserva());
-        callCancelarReserva.enqueue(new Callback<Integer>() {
-            @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                Toast.makeText(EditarAgregarReservaActivity.this,"Reserva cancelada",Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        if(reserva_modificar.getFlagAsistio()!= null || reserva_modificar.getFlagEstado().compareTo("C")== 0 || compararFecha(reserva_modificar.getFecha())<0) {
+            Toast.makeText(EditarAgregarReservaActivity.this, "Reserva no se puede ser cancelada", Toast.LENGTH_LONG).show();
+        }else {
+            Call<Integer> callCancelarReserva = Servicios.getReservaService().cancelarReserva(reserva_modificar.getIdReserva());
+            callCancelarReserva.enqueue(new Callback<Integer>() {
+                @Override
+                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                    Toast.makeText(EditarAgregarReservaActivity.this, "Reserva cancelada", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
 
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Integer> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     private void cargarCampos(){
         txtObservacion.setText(reserva_modificar.getObservacion());
-        if(reserva_modificar.getFlagAsistio()==null){
+        if(reserva_modificar.getFlagAsistio()== null || reserva_modificar.getFlagAsistio().compareTo("S")!=0){
             AsistioSi.setChecked(false);
         }else
             AsistioSi.setChecked(true);
@@ -96,22 +100,18 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
     }
 
     public void guardar(View view) {
-        if(isEmpty(txtObservacion)){
-            setError(txtObservacion,"Campo requerido");
-            return;
-        }
 
         Reserva reserva=new Reserva();
         if(reserva_modificar != null){
 
-            if(reserva_modificar.getFlagAsistio()==null && reserva_modificar.getFlagEstado().compareTo("C")!= 0 && compararFecha(reserva_modificar.getFecha())<0){
+            if(reserva_modificar.getFlagAsistio()!= null || reserva_modificar.getFlagEstado().compareTo("C")== 0 || compararFecha(reserva_modificar.getFecha())<0){
                 Toast.makeText(EditarAgregarReservaActivity.this,"Reserva no se puede modificar",Toast.LENGTH_LONG).show();
             }else {
 
                 reserva.setIdReserva(reserva_modificar.getIdReserva());
                 reserva.setObservacion(txtObservacion.getText().toString());
 
-                reserva.setFlagAsistio(AsistioSi.isChecked() ? "S" : "N");
+                reserva.setFlagAsistio(AsistioSi.isChecked() ? "S" : null);
 
                 Call<Reserva> callReserva = Servicios.getReservaService().modificarReserva(reserva, "pedro");
                 callReserva.enqueue(new Callback<Reserva>() {
@@ -151,9 +151,9 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
         final int mesActual = mes + 1;
 
 
-        Anio = Integer.parseInt(fechaReserva.substring(0,3));
-        Mes = Integer.parseInt(fechaReserva.substring(5,6));
-        DIA = Integer.parseInt(fechaReserva.substring(8,9));
+        Anio = Integer.parseInt(fechaReserva.substring(0,4));
+        Mes = Integer.parseInt(fechaReserva.substring(5,7));
+        DIA = Integer.parseInt(fechaReserva.substring(8,10));
 
         if(Anio < anio)
             return -1;
