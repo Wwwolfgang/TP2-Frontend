@@ -3,7 +3,9 @@ package actividadPaciente.Modelo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Paciente {
+import java.io.Serializable;
+
+public class Paciente implements Serializable {
 
     @SerializedName("idPersona")
     @Expose

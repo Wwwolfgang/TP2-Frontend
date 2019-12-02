@@ -7,7 +7,7 @@
         android:id="@+id/accion_buscar"
         android:title="Search"
         android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom|collapseActionView"
+        app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView">
     </item>
 

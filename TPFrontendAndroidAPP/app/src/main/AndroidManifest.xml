@@ -14,13 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="actividadPaciente.RegistroPaciente.CrearPaciente"></activity>
+        <activity android:name="actividadPaciente.DetallePaciente.Detalle"></activity>
+        <activity android:name="actividadPaciente.RegistroPaciente.CrearPaciente"
+            android:colorMode="hdr"/>
         <activity android:name=".ListaDoctorActivity" />
         <activity android:name=".ListaFichaActivity" />
         <activity android:name=".MenuPrincipalActivity" />
         <activity android:name=".CrearFichaActivity" />
-        <activity android:name="actividadPaciente.PacientesActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="actividadPaciente.PacientesActivity"
+            android:colorMode="hdr"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import actividadPaciente.DetallePaciente.Detalle;
 import actividadPaciente.Modelo.Paciente;
 
 public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdaptador.MyViewHolder> implements Filterable {
@@ -50,12 +51,7 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.nombre_ape.setText("Nombre y Apellido: " +pdata.get(position).getNombre() + " " + pdata.get(position).getApellido());
-        holder.cedula.setText("Cedula: "+pdata.get(position).getCedula());
-        holder.email.setText("Email: "+ pdata.get(position).getEmail());
-        holder.telefono.setText("Telefono: " + pdata.get(position).getTelefono());
-        holder.img.setImageResource(R.drawable.usuario);
-
+        holder.nombre_ape.setText(pdata.get(position).getNombre() + " " + pdata.get(position).getApellido());
     }
 
     @Override
@@ -67,19 +63,12 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView nombre_ape;
-        TextView cedula;
-        TextView email;
-        TextView telefono;
-        ImageView img;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombre_ape = itemView.findViewById(R.id.id_nom_ape);
-            cedula = itemView.findViewById(R.id.id_cedula);
-            email = itemView.findViewById(R.id.id_email);
-            telefono = itemView.findViewById(R.id.id_telefono);
-            img = itemView.findViewById(R.id.id_icono);
+            nombre_ape = itemView.findViewById(R.id.nombre_y_apellido);
         }
     }
 
@@ -92,18 +81,17 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
+            String parametroFiltro = constraint.toString().toLowerCase().trim();
             List<Paciente> listaFiltro = new ArrayList<>();
 
-            if ( constraint == null || constraint.length() == 0){
+            if ( parametroFiltro.isEmpty()){
                 listaFiltro.addAll(pdataFull);
             }
             else{
 
-                String parametroFiltro = constraint.toString().toLowerCase().trim();
-
                 for ( Paciente pItem: pdataFull){
 
-                    if( pItem.getNombre().toLowerCase().contains(parametroFiltro)){
+                    if( pItem.getNombre().toLowerCase().contains(parametroFiltro) ){
                             listaFiltro.add(pItem);
                     }
                 }

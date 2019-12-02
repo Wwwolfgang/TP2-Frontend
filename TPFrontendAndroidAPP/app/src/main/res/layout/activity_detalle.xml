@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="actividadPaciente.DetallePaciente.Detalle">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/background"
+        android:src="@drawable/icono_detalle"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="401dp"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="-3dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="201dp">
+
+
+        <TextView
+            android:id="@+id/id_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Nombre"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/id_ape"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Apellido"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/id_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="E-mail"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/id_telefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Telefono"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/id_RUC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="RUC"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:id="@+id/id_cedula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Cedula"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/id_fechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Fecha de Nacimineto"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+</RelativeLayout>

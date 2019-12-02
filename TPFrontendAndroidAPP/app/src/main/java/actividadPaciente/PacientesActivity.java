@@ -8,20 +8,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.tp_frontend_androidapp.R;
 
 import java.util.Arrays;
-import java.util.List;
 
 import actividadPaciente.Adaptador.RecyclerViewAdaptador;
+import actividadPaciente.DetallePaciente.Detalle;
 import actividadPaciente.Modelo.ListaPaciente;
 import actividadPaciente.Modelo.Paciente;
 import actividadPaciente.RegistroPaciente.CrearPaciente;
@@ -38,7 +37,6 @@ public class PacientesActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private RecyclerView recyclerView;
     private RecyclerViewAdaptador recyclerViewAdaptador;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +90,16 @@ public class PacientesActivity extends AppCompatActivity {
             });
         }
         else{
-            //TODO: ACA HAY QUE PONER EL LISTENER PARA IR A EDITAR
+
+            recyclerViewAdaptador.setListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent j = new Intent(PacientesActivity.this, Detalle.class);
+                    Paciente pacient = recyclerViewAdaptador.getPaciente(recyclerView.getChildAdapterPosition(v));
+                    j.putExtra("paciente", pacient);
+                    startActivity(j);
+                }
+            });
         }
 
         recyclerView.setLayoutManager(layoutManager);
