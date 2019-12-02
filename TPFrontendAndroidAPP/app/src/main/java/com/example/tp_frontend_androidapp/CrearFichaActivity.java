@@ -76,13 +76,14 @@ public class CrearFichaActivity extends AppCompatActivity implements AdapterView
         diagnostico_txt = findViewById(R.id.diagnostico_txt);
         paciente_txt = findViewById(R.id.paciente_ficha_txt);
         doctor_txt = findViewById(R.id.doctor_ficha_txt);
-
+        getSupportActionBar().setTitle("Crear Ficha");
 
 
         prepararRvArchivos();
 
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null && bundle.containsKey("fichaEditar")){
+            getSupportActionBar().setTitle("Modificar Ficha");
             ficha_modificar = (FichaClinica) bundle.getSerializable("fichaEditar");
 
             paciente_buscar = findViewById(R.id.buscar_paciente_button);

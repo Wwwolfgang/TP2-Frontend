@@ -48,11 +48,11 @@ public class PacientesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         btn = findViewById(R.id.crear_paciente_float);
-        getSupportActionBar().setTitle("Lista de Pacientes");
+        getSupportActionBar().setTitle("Pacientes");
         if(getIntent().hasExtra("busqueda")){
             btn.hide();
             if(getIntent().getStringExtra("busqueda").compareTo("paciente")!=0){
-                getSupportActionBar().setTitle("Lista de Doctores");
+                getSupportActionBar().setTitle("Doctores");
                 busquedaId = "doctorId";
                 busquedaNombre = "doctorNombre";
                 ejemplo = "{\"soloUsuariosDelSistema\":true}";

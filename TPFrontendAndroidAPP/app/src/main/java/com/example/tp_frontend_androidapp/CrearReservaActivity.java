@@ -63,6 +63,7 @@ public class CrearReservaActivity extends AppCompatActivity{
         setContentView(R.layout.activity_crear_reserva);
         spinner_reserva = findViewById(R.id.horario_reserva_spinner);
         etFecha=findViewById(R.id.et_mostrar_fecha_picker);
+        getSupportActionBar().setTitle("Crear Reserva");
 
 
 

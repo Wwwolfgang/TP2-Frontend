@@ -66,6 +66,7 @@ public class ReservaActivity extends AppCompatActivity implements AdapterView.On
         adapter=new AdapterReserva(lista);
         rvReservas.setAdapter(adapter);
         fechaActual(anio,mes,dia);
+        getSupportActionBar().setTitle("Reservas");
     }
 
     @Override

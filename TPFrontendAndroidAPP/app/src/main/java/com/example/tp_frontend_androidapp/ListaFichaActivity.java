@@ -71,6 +71,7 @@ public class ListaFichaActivity extends AppCompatActivity implements AdapterView
         rvFichas.setHasFixedSize(true);
         adapter=new AdapterFichaClinica(lista);
         rvFichas.setAdapter(adapter);
+        getSupportActionBar().setTitle("Fichas Clinicas");
 
 
         cargarCategorias();

@@ -52,8 +52,10 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
         HoraFin_txt = findViewById(R.id.txtHoraFin);
 
         Bundle bundle = this.getIntent().getExtras();
+
         if (bundle!=null && bundle.containsKey("reservaEditar")) {
             reserva_modificar = (Reserva) bundle.getSerializable("reservaEditar");
+            getSupportActionBar().setTitle("Ver Reserva "+reserva_modificar.getIdReserva());
             txtObservacion.setEnabled(true);
             AsistioSi.setEnabled(true);
             cargarCampos();
