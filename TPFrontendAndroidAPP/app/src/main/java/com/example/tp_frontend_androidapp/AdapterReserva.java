@@ -31,11 +31,11 @@ public class AdapterReserva extends RecyclerView.Adapter<AdapterReserva.AdapterR
 
     @Override
     public void onBindViewHolder(@NonNull AdapterReservaHolder holder, int position) {
-        holder.tvFecha.setText(lista[position].getFecha());
+        holder.tvFecha.setText("Fecha:\t"+lista[position].getFecha());
 
-        holder.tvPaciente.setText(lista[position].getIdCliente().getNombre());
+        holder.tvPaciente.setText("Paciente:\t"+lista[position].getIdCliente().getNombre());
 
-        holder.tvDoctor.setText(lista[position].getIdEmpleado().getNombre());
+        holder.tvDoctor.setText("Doctor:\t"+lista[position].getIdEmpleado().getNombre());
     }
 
     @Override
