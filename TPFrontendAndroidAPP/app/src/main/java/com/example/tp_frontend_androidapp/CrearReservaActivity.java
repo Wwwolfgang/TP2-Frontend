@@ -14,13 +14,16 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tp_frontend_androidapp.modelos.Doctor;
 import com.example.tp_frontend_androidapp.modelos.Paciente;
 import com.example.tp_frontend_androidapp.modelos.Reserva;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import actividadPaciente.PacientesActivity;
 import retrofit2.Call;
@@ -52,12 +55,16 @@ public class CrearReservaActivity extends AppCompatActivity{
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_reserva);
         spinner_reserva = findViewById(R.id.horario_reserva_spinner);
         etFecha=findViewById(R.id.et_mostrar_fecha_picker);
+
+
 
     }
 
@@ -170,10 +177,14 @@ public class CrearReservaActivity extends AppCompatActivity{
 
                 case 40:
                     doctor= new Doctor();
+                    TextView txtdoc= findViewById(R.id.textDoc);
+                    txtdoc.setText(data.getStringExtra("doctorNombre"));
                     doctor.setIdPersona(data.getIntExtra("doctorId", 0));
                     break;
                 case 41:
                     paciente= new Paciente();
+                    TextView txtpac= findViewById(R.id.textPac);
+                    txtpac.setText(data.getStringExtra("pacienteNombre"));
                     paciente.setIdPersona(data.getIntExtra("pacienteId", 0));
 
             }
@@ -182,6 +193,12 @@ public class CrearReservaActivity extends AppCompatActivity{
 
     public void guardar(View v){
 
+        String diaFormateado = (c.get(Calendar.DATE) < 10)? CERO + String.valueOf(c.get(Calendar.DATE)):String.valueOf(c.get(Calendar.DATE));
+        int mes=c.get(Calendar.MONTH)+1;
+        String mesFormateado = (mes < 10)? CERO + String.valueOf(mes):String.valueOf(mes);
+
+        String hoy=c.get(Calendar.YEAR)+mesFormateado+diaFormateado;
+        //System.out.println("elegida: "+this.fecha+" hoy: "+hoy);
         if(this.paciente==null){
             Toast.makeText(CrearReservaActivity.this, "No hay paciente seleccionado", Toast.LENGTH_SHORT).show();
             return;
@@ -201,6 +218,11 @@ public class CrearReservaActivity extends AppCompatActivity{
         }
         if(etFecha.getError()!=null){
             return;
+        }
+        if(Integer.parseInt(this.fecha) < Integer.parseInt(hoy)){
+            Toast.makeText(CrearReservaActivity.this, "Elija bien una fecha", Toast.LENGTH_SHORT).show();
+            return;
+
         }
 
         Reserva reserva= new Reserva();
