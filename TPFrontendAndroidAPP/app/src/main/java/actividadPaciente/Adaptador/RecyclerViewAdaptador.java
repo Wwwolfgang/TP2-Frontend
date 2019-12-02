@@ -85,10 +85,18 @@ public class RecyclerViewAdaptador extends RecyclerView.Adapter<RecyclerViewAdap
                 listaFiltro.addAll(pdataFull);
             }
             else{
-
+                String nom;
+                String ape;
                 for ( Paciente pItem: pdataFull){
-
-                    if( pItem.getNombre().toLowerCase().contains(parametroFiltro) ){
+                    nom=pItem.getNombre();
+                    ape=pItem.getApellido();
+                    if(nom==null){
+                        nom="";
+                    }
+                    if(ape==null){
+                        ape="";
+                    }
+                    if( nom.toLowerCase().contains(parametroFiltro) || ape.toLowerCase().contains(parametroFiltro)){
                             listaFiltro.add(pItem);
                     }
                 }
