@@ -209,6 +209,7 @@ public class CrearReservaActivity extends AppCompatActivity{
         reserva.setHoraFinCadena(hor.getHoraFinCadena().replace(":",""));
         reserva.setIdEmpleado(this.doctor);
         reserva.setIdCliente(this.paciente);
+        reserva.setFlagAsistio(null);
 
         Call<Reserva> callguardar = Servicios.getReservaService().cargarReserva(reserva, "pedro");
         callguardar.enqueue(new Callback<Reserva>() {
