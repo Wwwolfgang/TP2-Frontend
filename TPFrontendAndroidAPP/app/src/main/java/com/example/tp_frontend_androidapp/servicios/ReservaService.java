@@ -27,7 +27,7 @@ public interface ReservaService {
 
     @Headers("Content-Type: application/json")
     @PUT("reserva")
-    Call<Reserva> modificarReserva(@Body Reserva reserva, @Header("usuario") String usuario);
+    Call<Void> modificarReserva(@Body Reserva reserva, @Header("usuario") String usuario);
 
     @DELETE("reserva/{id}")
     Call<Integer> cancelarReserva(@Path("id") int id);

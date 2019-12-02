@@ -115,17 +115,24 @@ public class EditarAgregarReservaActivity extends AppCompatActivity implements A
 
                 reserva.setFlagAsistio(AsistioSi.isChecked() ? "S" : null);
 
-                Call<Reserva> callReserva = Servicios.getReservaService().modificarReserva(reserva, "pedro");
-                callReserva.enqueue(new Callback<Reserva>() {
+                Call<Void> callReserva = Servicios.getReservaService().modificarReserva(reserva, "pedro");
+                callReserva.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<Reserva> call, Response<Reserva> response) {
-                        Toast.makeText(EditarAgregarReservaActivity.this, "Reserva modificada exitosamente", Toast.LENGTH_LONG).show();
-                        finish();
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(response.code()<400) {
+                            Toast.makeText(EditarAgregarReservaActivity.this, "Reserva modificada exitosamente", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                        else{
+                            Toast.makeText(EditarAgregarReservaActivity.this, "Ocurrio un error", Toast.LENGTH_LONG).show();
+
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<Reserva> call, Throwable t) {
-                        Log.w("warning", t.getCause().toString());
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(EditarAgregarReservaActivity.this, "Ocurrio un error", Toast.LENGTH_LONG).show();
+                        Log.w("warning", t.getCause());
                     }
                 });
             }
