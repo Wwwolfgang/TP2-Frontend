@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tp_frontend_androidapp.MenuPrincipalActivity;
 import com.example.tp_frontend_androidapp.R;
 
 import java.util.Arrays;
@@ -44,6 +45,13 @@ public class PacientesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         getSupportActionBar().setTitle("Lista de Pacientes");
 
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         extraerListaPacientes();
 
     }
@@ -68,6 +76,15 @@ public class PacientesActivity extends AppCompatActivity {
                 Log.d("sa",t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(!getIntent().hasExtra("busqueda")){
+            startActivity(new Intent(this, MenuPrincipalActivity.class));
+        }
+
     }
 
     private void mostrarReclyclerView(ListaPaciente<Paciente> response) {

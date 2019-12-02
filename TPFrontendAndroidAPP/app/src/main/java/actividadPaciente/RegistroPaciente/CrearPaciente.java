@@ -2,6 +2,7 @@ package actividadPaciente.RegistroPaciente;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ public class CrearPaciente extends AppCompatActivity {
     private TextInputEditText fechaNacimientoInput;
     private Button botonRegistrar;
 
+    private Paciente paciente_modificar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,21 @@ public class CrearPaciente extends AppCompatActivity {
 
         RetrofitClient();
         createUp();
+        if(getIntent().getSerializableExtra("paciente")!=null){
+            paciente_modificar =(Paciente)getIntent().getSerializableExtra("paciente");
+            llenarCampos();
+        }
+    }
+
+    private void llenarCampos(){
+        nombreInput.setText(paciente_modificar.getNombre());
+        apellidoInput.setText(paciente_modificar.getApellido());
+        emailInput.setText(paciente_modificar.getEmail());
+        telofonoInput.setText(paciente_modificar.getTelefono());
+        rucInput.setText(paciente_modificar.getRuc());
+        cedulaInput.setText(paciente_modificar.getCedula());
+        fechaNacimientoInput.setText(paciente_modificar.getFechaNacimiento());
+
     }
 
     private void RetrofitClient() {
@@ -57,7 +75,7 @@ public class CrearPaciente extends AppCompatActivity {
 
         nombreInput = findViewById(R.id.id_nombre);
         apellidoInput = findViewById(R.id.id_apellido);
-        emailInput = findViewById(R.id.id_nombre);
+        emailInput = findViewById(R.id.id_ema);
         telofonoInput = findViewById(R.id.id_tel);
         rucInput = findViewById(R.id.id_ruc);
         cedulaInput = findViewById(R.id.id_ced);
@@ -85,50 +103,76 @@ public class CrearPaciente extends AppCompatActivity {
                 if ( email.isEmpty()){
                     emailInput.setError("Requiere el email");
                     emailInput.requestFocus();
+                    return;
                 }
 
                 if ( telefono.isEmpty()){
                     telofonoInput.setError("Requiere el numero de telefono");
                     telofonoInput.requestFocus();
+                    return;
                 }
 
                 if ( ruc.isEmpty()){
                     rucInput.setError("Requiere el RUC");
                     rucInput.requestFocus();
+                    return;
                 }
 
                 if ( cedula.isEmpty()){
                     cedulaInput.setError("Requiere el numero de cedula");
                     cedulaInput.requestFocus();
+                    return;
                 }
 
-                if ( fechaNacimiento.isEmpty()){
-                    fechaNacimientoInput.setError("Requiere la fecha de Nacimiento");
-                    fechaNacimientoInput.requestFocus();
+                if ( !fechaNacimiento.isEmpty()){
+                    fechaNacimiento+=" 00:00:00";
                 }
-                Paciente pac= new Paciente(null,nombre, apellido, email, telefono, ruc, cedula, fechaNacimiento);
+                Paciente pac= new Paciente(paciente_modificar==null?null:paciente_modificar.getIdPersona(),nombre, apellido, email, telefono, ruc, cedula, fechaNacimiento);
+                if(paciente_modificar==null){
                 Call<Paciente> call = getApi().createPaciente(pac);
 
 
-                call.enqueue(new Callback<Paciente>() {
-                    @Override
-                    public void onResponse(Call<Paciente> call, Response<Paciente> response) {
+                    call.enqueue(new Callback<Paciente>() {
+                        @Override
+                        public void onResponse(Call<Paciente> call, Response<Paciente> response) {
 
-                        Toast.makeText(CrearPaciente.this, "Registro con exito", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CrearPaciente.this, "Registro con exito", Toast.LENGTH_LONG).show();
 
-                        Intent intentNewActivity;
-                        Bundle b = new Bundle();
+                            Intent intentNewActivity;
+                            Bundle b = new Bundle();
 
-                        intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
-                        intentNewActivity.putExtras(b);
-                        startActivity(intentNewActivity);
-                    }
+                            intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
+                            intentNewActivity.putExtras(b);
+                            startActivity(intentNewActivity);
+                        }
 
-                    @Override
-                    public void onFailure(Call<Paciente> call, Throwable t) {
-                        Toast.makeText(CrearPaciente.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<Paciente> call, Throwable t) {
+                            Toast.makeText(CrearPaciente.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                else{
+                    Call<Void> call = getApi().modificarPaciente(pac);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Toast.makeText(CrearPaciente.this, "Guardado con exito", Toast.LENGTH_LONG).show();
+
+                            Intent intentNewActivity;
+                            Bundle b = new Bundle();
+
+                            intentNewActivity = new Intent(CrearPaciente.this, PacientesActivity.class);
+                            intentNewActivity.putExtras(b);
+                            startActivity(intentNewActivity);
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.d("sa","as");
+                        }
+                    });
+                }
             }
         });
 
