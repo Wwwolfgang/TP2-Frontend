@@ -134,6 +134,9 @@
             android:hint="Fecha de nacimiento"
             android:ems="10"
             android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
             android:id="@+id/id_fecha"
             android:textSize="20sp"/>
     </com.google.android.material.textfield.TextInputLayout>

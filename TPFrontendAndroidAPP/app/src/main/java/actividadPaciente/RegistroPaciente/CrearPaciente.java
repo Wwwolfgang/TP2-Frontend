@@ -1,10 +1,12 @@
 package actividadPaciente.RegistroPaciente;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import actividadPaciente.Modelo.Paciente;
 import actividadPaciente.PacientesActivity;
 import actividadPaciente.Servicio.ApiPaciente;
+import actividadPaciente.dialog.DatePickerFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,6 +63,13 @@ public class CrearPaciente extends AppCompatActivity {
         cedulaInput.setText(paciente_modificar.getCedula());
         fechaNacimientoInput.setText(paciente_modificar.getFechaNacimiento());
 
+        fechaNacimientoInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
     }
 
     private void RetrofitClient() {
@@ -79,7 +89,15 @@ public class CrearPaciente extends AppCompatActivity {
         telofonoInput = findViewById(R.id.id_tel);
         rucInput = findViewById(R.id.id_ruc);
         cedulaInput = findViewById(R.id.id_ced);
+
         fechaNacimientoInput = findViewById(R.id.id_fecha);
+        fechaNacimientoInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
 
         botonRegistrar = findViewById(R.id.id_registrar);
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +204,19 @@ public class CrearPaciente extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                final String selectedDate = dayOfMonth + "-" + (month+1) + "-" + year;
+                fechaNacimientoInput.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
 }
