@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TP-Frontend-AndroidAPP</string>
+    <string name="title_activity_modificar_paciente">ModificarPaciente</string>
+    <string name="action_settings">Settings</string>
 </resources>

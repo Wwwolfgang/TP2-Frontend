@@ -1,61 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="83dp"
-    android:layout_marginTop="1dp"
-    android:padding="8dp"
-    android:background="#fff">
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:paddingBottom="@dimen/row_padding"
+    android:paddingLeft="@dimen/activity_margin"
+    android:paddingRight="@dimen/activity_margin"
+    android:paddingTop="@dimen/row_padding">
+
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="72dp"
-        android:background="@drawable/imagen_tipo"
-        android:id="@+id/id_icono"/>
+        android:id="@+id/thumbnail"
+        android:layout_width="@dimen/thumbnail"
+        android:layout_height="@dimen/thumbnail"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/row_padding"
+        android:src="@drawable/ic_icono"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/nombre_y_apellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/thumbnail"
+        android:layout_centerVertical="true"
+        android:fontFamily="sans-serif-medium"
+        android:text="Nombre y Apellido"
+        android:textStyle="bold"
+        android:textSize="@dimen/contact_name" />
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_nom_ape"
-            android:text="Nombre y Apellido"
-            android:textStyle="bold"
-            android:textSize="13dp"
-            android:paddingLeft="2dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_cedula"
-            android:text="Cedula"
-            android:textSize="11dp"
-            android:layout_marginTop="2dp"
-            android:paddingLeft="2dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_email"
-            android:text="Email"
-            android:textSize="11dp"
-            android:layout_marginTop="2dp"
-            android:paddingLeft="2dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/id_telefono"
-            android:text="Telefono"
-            android:textSize="11dp"
-            android:layout_marginTop="2dp"
-            android:paddingLeft="2dp"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

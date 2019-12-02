@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import ActividadPaciente.PacientesActivity;
+import actividadPaciente.PacientesActivity;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
 

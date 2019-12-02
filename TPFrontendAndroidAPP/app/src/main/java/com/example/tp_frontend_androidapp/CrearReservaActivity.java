@@ -22,7 +22,7 @@ import com.example.tp_frontend_androidapp.modelos.Reserva;
 
 import java.util.Calendar;
 
-import ActividadPaciente.PacientesActivity;
+import actividadPaciente.PacientesActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

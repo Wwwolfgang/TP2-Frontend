@@ -1,4 +1,4 @@
-package ActividadPaciente.Modelo;
+package actividadPaciente.Modelo;
 
 import com.google.gson.annotations.SerializedName;
 
