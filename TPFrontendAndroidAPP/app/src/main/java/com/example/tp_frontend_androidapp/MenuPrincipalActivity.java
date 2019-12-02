@@ -16,6 +16,15 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_principal);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
+
     public void abrir(View v){
         String tag=v.getTag().toString();
         Intent intentNewActivity;
